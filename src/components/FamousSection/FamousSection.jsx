@@ -39,11 +39,14 @@ function FamousSection() {
     })
     .then((response) => {
       fetchPeople()
-      setPersonName('')
-      setPersonRole('')
     }) 
     .catch((error) => {
       console.log("Error in POST:", error)
+    })
+    .finally(() => {
+      setPersonName('')
+      
+      setPersonRole('')
     })
     // HINT: the server is expecting a person object 
     //       with a `name` and a `role` property
@@ -54,9 +57,9 @@ function FamousSection() {
       <section className="new-person-section">
         <form onSubmit={addPerson}>
           <label htmlFor="name-input">Name:</label>
-          <input id="name-input" onChange={e => setPersonName(e.target.value)} />
+          <input value={famousPersonName} id="name-input" onChange={e => setPersonName(e.target.value)} />
           <label htmlFor="role-input">Famous for:</label>
-          <input id="role-input" onChange={e => setPersonRole(e.target.value)} />
+          <input value={famousPersonRole} id="role-input" onChange={e => setPersonRole(e.target.value)} />
           <button type="submit">Done</button>
         </form>
         <p>
